@@ -1,6 +1,15 @@
 <resources>
-    <string name="app_name">SIGOSApp</string>
+    <string name="app_name">SIGOS App</string>
+    <string name="title_activity_ocorrencia">Ocorrência</string>
+    <string name="app_titulo_descricao">Sistema de Gestão de Ocorrências de Segurança</string>
+
+    <string name="action_settings">Configurações</string>
+
+
+
+
+
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_identificacao">identificacao</string>
 </resources>

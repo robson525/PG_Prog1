@@ -1,4 +1,4 @@
-package com.example.robson.sigosapp;
+package com.example.robmah.sigosapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

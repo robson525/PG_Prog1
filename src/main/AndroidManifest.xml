@@ -18,7 +18,7 @@
         </activity>
         <activity
             android:name="com.example.robmah.sigosapp.ocorrencia"
-            android:label="@string/title_activity_ocorrencia" >
+            android:label="@string/app_name" >
         </activity>
         <activity
             android:name="com.example.robmah.sigosapp.identificacao"

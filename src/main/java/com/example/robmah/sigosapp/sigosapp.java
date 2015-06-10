@@ -17,7 +17,7 @@ public class sigosapp extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean logado = false;
+        boolean logado = true;
 
         if(logado){
             Intent intent = new Intent(this, ocorrencia.class);

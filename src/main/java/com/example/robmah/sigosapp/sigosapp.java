@@ -3,6 +3,7 @@ package com.example.robmah.sigosapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ public class sigosapp extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean logado = true;
+        boolean logado = false;
 
         if(logado){
             Intent intent = new Intent(this, ocorrencia.class);
@@ -33,7 +34,6 @@ public class sigosapp extends Activity {
         botao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(sigosapp.this, identificacao.class);
                 startActivity(intent);
 

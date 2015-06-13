@@ -20,6 +20,17 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(ScriptsSQL.getCreateSetor());
         db.execSQL(ScriptsSQL.getCreateUsuario());
 
+        /*********************************************/
+        String[] Unidade = ScriptsSQL.getDefaultUnidade();
+        for(int i=0; i < Unidade.length; i++){
+            db.execSQL(Unidade[i]);
+        }
+
+        String[] Setor = ScriptsSQL.getDefaultSetor();
+        for(int i=0; i < Setor.length; i++){
+            db.execSQL(Setor[i]);
+        }
+
     }
 
     @Override

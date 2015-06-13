@@ -40,11 +40,28 @@ public class ScriptsSQL {
         sqlBuilder.append("TIPO INTEGER NOT NULL, ");
         sqlBuilder.append("OUTRO_TIPO VARCHAR (100), ");
         sqlBuilder.append("MUNICIPIO VARCHAR (100), ");
-        sqlBuilder.append("IDENTIFICACAO VARCHAR (30), ");
         sqlBuilder.append("SETOR INTEGER REFERENCES SETOR (_id) ON DELETE SET NULL ON UPDATE CASCADE ");
         sqlBuilder.append(");");
 
         return sqlBuilder.toString();
+    }
+
+
+    public static String[] getDefaultUnidade(){
+        String[] sqlBuilder = {
+        "INSERT INTO UNIDADE (_id, NOME) VALUES (1, 'Guama');",
+        "INSERT INTO UNIDADE (_id, NOME) VALUES (2, 'Outro');"};
+
+        return sqlBuilder;
+    }
+
+    public static String[] getDefaultSetor(){
+        String[] sqlBuilder = {
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (1, 'ICB', 1);",
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (2, 'ITEC', 1);",
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (3, 'Ginasio', 1);"};
+
+        return sqlBuilder;
     }
 
 

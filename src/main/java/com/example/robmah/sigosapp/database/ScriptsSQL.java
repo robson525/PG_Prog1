@@ -46,6 +46,44 @@ public class ScriptsSQL {
         return sqlBuilder.toString();
     }
 
+    public static String getCreateTipoOcorrencia(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS OCORRENCIA_TIPO ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("NOME VARCHAR (50) NOT NULL ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+    }
+
+    public  static String getCreateOcorrencia(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS OCORRENCIA ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("DESCRICAO TEXT NOT NULL, ");
+        sqlBuilder.append("LOCAL VARCHAR(200), ");
+        sqlBuilder.append("PAPEL INTEGER NOT NULL, ");
+        sqlBuilder.append("TIPO_OCORRENCIA INTEGER REFERENCES OCORRENCIA_TIPO(_id)ON DELETE SET NULL ON UPDATE CASCADE NOT NULL, ");
+        sqlBuilder.append("SETOR INTEGER REFERENCES SETOR(_id)ON DELETE SET NULL ON UPDATE CASCADE NOT NULL, ");
+        sqlBuilder.append("USUARIO INTEGER REFERENCES USUARIO(_id)ON DELETE SET NULL ON UPDATE CASCADE ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+
+    }
+
+    public static String getCreateEnvio(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS ENVIO ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("DATA DATETIME , ");
+        sqlBuilder.append("STATUS INTEGER NOT NULL, ");
+        sqlBuilder.append("OCORRENCIA INTEGER REFERENCES OCORRENCIA (_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+    }
+
 
     public static String[] getDefaultUnidade(){
         String[] sqlBuilder = {
@@ -67,6 +105,17 @@ public class ScriptsSQL {
         return sqlBuilder;
     }
 
+    public static String[] getDefaultTipoOcorrencia(){
+        String[] sqlBuilder = {
+        "INSERT INTO OCORRENCIA_TIPO (_id, NOME) VALUES (1, 'Assalto');",
+        "INSERT INTO OCORRENCIA_TIPO (_id, NOME) VALUES (2, 'Furto');",
+        "INSERT INTO OCORRENCIA_TIPO (_id, NOME) VALUES (3, 'Depredação');",
+        "INSERT INTO OCORRENCIA_TIPO (_id, NOME) VALUES (4, 'Invasão');",
+        "INSERT INTO OCORRENCIA_TIPO (_id, NOME) VALUES (5, 'Pessoa Estranha');"
+        };
+
+        return sqlBuilder;
+    }
 
 }
 

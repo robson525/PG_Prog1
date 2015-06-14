@@ -5,11 +5,10 @@
 
     <string name="action_settings">Configurações</string>
     <string name="title_activity_identificacao">Identificação</string>
-
-
-
+    <string name="hitorico">Histórico de Ocorrências</string>
 
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_histórico">Histórico</string>
 
 </resources>

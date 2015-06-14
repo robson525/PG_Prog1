@@ -9,7 +9,8 @@ package com.example.robmah.sigosapp.modelos;
  * @author Marina
  */
 public class Ocorrencia {
-    
+
+    private int _id;
     private String descricao;
     private String local;
     private int papel;// Vitima, Testemunha
@@ -20,7 +21,15 @@ public class Ocorrencia {
     public Ocorrencia(){
         
     }
-    
+
+    public int getId() {
+        return _id;
+    }
+
+    public void setId(int _id) {
+        this._id = _id;
+    }
+
     public String getDescricao(){
         return this.descricao;
     }
@@ -68,4 +77,10 @@ public class Ocorrencia {
     public void setUsuario(Usuario usuario){
         this.usuario = usuario;
     }
+
+
+    public String toString(){
+        return this.tipo.getNome();
+    }
+
 }

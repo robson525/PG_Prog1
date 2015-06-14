@@ -19,6 +19,9 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(ScriptsSQL.getCreateUnidade());
         db.execSQL(ScriptsSQL.getCreateSetor());
         db.execSQL(ScriptsSQL.getCreateUsuario());
+        db.execSQL(ScriptsSQL.getCreateTipoOcorrencia());
+        db.execSQL(ScriptsSQL.getCreateOcorrencia());
+        db.execSQL(ScriptsSQL.getCreateEnvio());
 
         /*********************************************/
         String[] Unidade = ScriptsSQL.getDefaultUnidade();
@@ -29,6 +32,11 @@ public class DataBase extends SQLiteOpenHelper {
         String[] Setor = ScriptsSQL.getDefaultSetor();
         for(int i=0; i < Setor.length; i++){
             db.execSQL(Setor[i]);
+        }
+
+        String[] TipoOcorrencia = ScriptsSQL.getDefaultTipoOcorrencia();
+        for(int i=0; i < TipoOcorrencia.length; i++){
+            db.execSQL(TipoOcorrencia[i]);
         }
 
     }

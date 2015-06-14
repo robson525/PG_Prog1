@@ -20,6 +20,30 @@ public class UsuarioDAO {
     }
 
 
+    public Usuario getUsuario(){
+
+        Usuario usuario = new Usuario();
+        SetorDAO setorDAO = new SetorDAO(db);
+        Cursor cursor = db.query("USUARIO", null, null, null, null, null, null, null);
+
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+
+            usuario.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+            usuario.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
+            usuario.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
+            usuario.setTelefone(cursor.getString(cursor.getColumnIndex("TELEFONE")));
+            usuario.setTipo(cursor.getInt(cursor.getColumnIndex("TIPO")));
+            usuario.setOutroTipo(cursor.getString(cursor.getColumnIndex("OUTRO_TIPO")));
+            usuario.setIdentificacao(cursor.getString(cursor.getColumnIndex("IDENTIFICACAO")));
+            usuario.setSetor( setorDAO.getSetorbyId( cursor.getInt(cursor.getColumnIndex("SETOR") ) ));
+
+        }
+
+        return usuario;
+
+    }
+
     public boolean UsuarioRegistrado(){
         Cursor cursor = db.query("USUARIO", null, null, null, null, null, null, null);
         if(cursor.getCount() > 0){
@@ -43,7 +67,7 @@ public class UsuarioDAO {
         values.put("SETOR", usuario.getSetor().getId() );
 
         long id = db.insert("USUARIO", null, values);
-        usuario.set_id((int) id);
+        usuario.setId((int) id);
 
     }
 

@@ -265,7 +265,7 @@ public class identificacao extends ActionBarActivity {
 
         AlertDialog alerta = new AlertDialog.Builder(this).create();
 
-        if(usuario.get_id() > 0){
+        if(usuario.getId() > 0){
             alerta.setCanceledOnTouchOutside(false);
             alerta.setTitle("Sucesso");
             alerta.setMessage("A sua identificaçãoo foi salva com sucesso. \nAgora você já pode enviar Ocorrências.");

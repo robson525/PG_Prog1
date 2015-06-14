@@ -40,4 +40,19 @@ public class UnidadeDAO {
 
     }
 
+    public Unidade getUnidadeById(int id){
+
+        Unidade unidade = new Unidade();
+        Cursor cursor = db.query("UNIDADE", null, "_id = ?", new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if(cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            unidade.setId( cursor.getInt( cursor.getColumnIndex("_id") ) );
+            unidade.setNome( cursor.getString(cursor.getColumnIndex("NOME") ) );
+        }
+
+        return  unidade;
+
+    }
+
 }

@@ -59,4 +59,24 @@ public class SetorDAO {
 
         return list;
     }
+
+
+    public Setor getSetorbyId(int id){
+
+        Setor setor = new Setor();
+        UnidadeDAO unidadeDAO = new UnidadeDAO(db);
+        Cursor cursor = db.query("SETOR", null, "_id = ?", new String[]{String.valueOf(id)}, null, null, null, null);
+
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+
+
+            setor.setId( cursor.getInt( cursor.getColumnIndex("_id") ) );
+            setor.setNome( cursor.getString( cursor.getColumnIndex("NOME") ) );
+            setor.setUnidade( unidadeDAO.getUnidadeById( cursor.getInt( cursor.getColumnIndex("UNIDADE") ) ) );
+        }
+
+        return setor;
+    }
+
 }

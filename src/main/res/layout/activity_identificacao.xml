@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Email"
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvEmail"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -86,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Telefone"
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvTelefone"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Tipo"
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvTipo"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Outro Tipo"
-                    android:id="@+id/textView5"
+                    android:id="@+id/tvOutro"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Matricula"
-                    android:id="@+id/tvIdentificador"
+                    android:id="@+id/tvMatricula"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Unidade"
-                    android:id="@+id/textView6"
+                    android:id="@+id/tvUnidade"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -225,7 +225,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Setor"
-                    android:id="@+id/textView7"
+                    android:id="@+id/tvSetor"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />
@@ -244,7 +244,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Salvar"
-                android:id="@+id/btSalavar"
+                android:id="@+id/btSalvar"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="10dp" />
         </LinearLayout>

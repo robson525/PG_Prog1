@@ -50,7 +50,7 @@ public class ScriptsSQL {
     public static String[] getDefaultUnidade(){
         String[] sqlBuilder = {
         "INSERT INTO UNIDADE (_id, NOME) VALUES (1, 'Guama');",
-        "INSERT INTO UNIDADE (_id, NOME) VALUES (2, 'Outro');"};
+        "INSERT INTO UNIDADE (_id, NOME) VALUES (2, 'Altamira');"};
 
         return sqlBuilder;
     }
@@ -59,7 +59,10 @@ public class ScriptsSQL {
         String[] sqlBuilder = {
         "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (1, 'ICB', 1);",
         "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (2, 'ITEC', 1);",
-        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (3, 'Ginasio', 1);"};
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (3, 'Ginasio', 1);",
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (4, 'Biblioteca', 1);",
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (5, 'Biblioteca', 2);",
+        "INSERT INTO SETOR (_id, NOME, UNIDADE) VALUES (6, 'Bloco A', 2);"};
 
         return sqlBuilder;
     }

@@ -9,65 +9,50 @@ package com.example.robmah.sigosapp.modelos;
  * @author Marina
  */
 public class Usuario {  
-    
+
+    private int _id;
     private String nome;
-    private String telefone;
     private String email;
-    private String estado;
-    private String minicipio;
-    private String unidade;
+    private String telefone;
     private int tipo;
+    private String outroTipo;
+    private String identificacao;
+    private Setor setor;
     
     public Usuario (){
         
     }
-    
-    public String getNome(){
-        return this.nome;
+
+    public int get_id() {
+        return _id;
     }
-    
-    public void setNome(String nome){
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    public String getTelefone(){
-        return this.telefone;        
+
+    public String getEmail() {
+        return email;
     }
-    
-    public void setTelefone (String telefone){
-        this.telefone = telefone;
-    }
-    
-    public String getEmail (){
-        return this.email;
-    }
-    
-    public void setEmail (String email){
+
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public String getMinicipio() {
-        return minicipio;
-    }
-
-    public void setMinicipio(String minicipio) {
-        this.minicipio = minicipio;
-    }
-
-    public String getUnidade() {
-        return unidade;
-    }
-
-    public void setUnidade(String unidade) {
-        this.unidade = unidade;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public int getTipo() {
@@ -77,7 +62,28 @@ public class Usuario {
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-    
-    
-    
+
+    public String getOutroTipo() {
+        return outroTipo;
+    }
+
+    public void setOutroTipo(String outroTipo) {
+        this.outroTipo = outroTipo;
+    }
+
+    public String getIdentificacao() {
+        return identificacao;
+    }
+
+    public void setIdentificacao(String identificacao) {
+        this.identificacao = identificacao;
+    }
+
+    public Setor getSetor() {
+        return setor;
+    }
+
+    public void setSetor(Setor setor) {
+        this.setor = setor;
+    }
 }

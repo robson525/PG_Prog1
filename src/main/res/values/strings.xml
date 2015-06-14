@@ -4,12 +4,12 @@
     <string name="app_titulo_descricao">Sistema de Gestão de Ocorrências de Segurança</string>
 
     <string name="action_settings">Configurações</string>
-
+    <string name="title_activity_identificacao">Identificação</string>
 
 
 
 
 
     <string name="hello_world">Hello world!</string>
-    <string name="title_activity_identificacao">identificacao</string>
+
 </resources>

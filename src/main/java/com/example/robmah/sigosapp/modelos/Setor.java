@@ -9,7 +9,8 @@ package com.example.robmah.sigosapp.modelos;
  * @author Marina
  */
 public class Setor {
-    
+
+    private int _id;
     private String nome;
     private Unidade unidade;
     
@@ -32,8 +33,18 @@ public class Setor {
     public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
     }
-    
-    
+
+    public int getId() {
+        return _id;
+    }
+
+    public void setId(int id) {
+        this._id = id;
+    }
+
+    public String toString(){
+        return this.nome;
+    }
 }
 
     

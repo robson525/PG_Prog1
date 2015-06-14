@@ -2,21 +2,36 @@ package com.example.robmah.sigosapp;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
-import android.database.Cursor;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.example.robmah.sigosapp.controle.SetorDAO;
+import com.example.robmah.sigosapp.controle.UnidadeDAO;
+import com.example.robmah.sigosapp.controle.UsuarioDAO;
 import com.example.robmah.sigosapp.database.DataBase;
+import com.example.robmah.sigosapp.modelos.Setor;
+import com.example.robmah.sigosapp.modelos.Unidade;
+import com.example.robmah.sigosapp.modelos.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +51,7 @@ public class identificacao extends ActionBarActivity {
     private EditText edtMatricula;
     private Spinner spnUnidade;
     private Spinner spnSetor;
+    private Button btSalvar;
 
 
     @Override
@@ -55,6 +71,7 @@ public class identificacao extends ActionBarActivity {
         edtMatricula  = (EditText)findViewById( R.id.edtIdentificador ) ;
         spnUnidade = (Spinner)findViewById( R.id.spnUnidade ) ;
         spnSetor = (Spinner)findViewById( R.id.spnSetor ) ;
+        btSalvar = (Button)findViewById(R.id.btSalvar);
     /******************************************************************/
 
 
@@ -75,36 +92,79 @@ public class identificacao extends ActionBarActivity {
         /* Pegar Numero */
         TelephonyManager telefoneM = (TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
         String telefone = telefoneM.getLine1Number();
-        edtTelefone.setText( telefone );
-                Log.e("Telefone", telefone);
+        edtTelefone.setText(telefone);
 
-
-        ArrayAdapter<String> dataAdapter = null;
-        List<String> list = new ArrayList<String>();
 
         /* Tipos de usuario */
+        List<String> list = new ArrayList<String>();
         list.add("Aluno");
         list.add("Funcionario");
         list.add("Outro");
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         spnTipoUsuario.setAdapter(dataAdapter);
 
-        list = this.ListUnidade();
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        spnUnidade.setAdapter(dataAdapter);
+        /* Outro tipo de usuairo*/
+        final LinearLayout llOutroTipo = (LinearLayout)findViewById(R.id.llOutroTipo);
+        llOutroTipo.setVisibility(View.GONE);
+        spnTipoUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 2){
+                    llOutroTipo.setVisibility(View.VISIBLE);
+                }else{
+                    llOutroTipo.setVisibility(View.GONE);
+                }
+            }
 
-        list = this.ListSetor();
-        dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
-        spnSetor.setAdapter(dataAdapter);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+        /* Spinnere Unidades */
+        UnidadeDAO unidadeDAO = new UnidadeDAO(this.db);
+        ArrayList<Unidade> unidades =  unidadeDAO.getListUnidade();
+        ArrayAdapter<Unidade> unidadeAdapter = new ArrayAdapter<Unidade>(this, android.R.layout.simple_list_item_1, unidades);
+        spnUnidade.setAdapter(unidadeAdapter);
+
+        //Quando Selecionar um Item da Unidade
+        spnUnidade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                Unidade unidade = (Unidade) parent.getItemAtPosition(position);
+
+                SetorDAO setorDAO = new SetorDAO(identificacao.this.db);
+                ArrayList<Setor> setores = setorDAO.getListSetorByUnidade( unidade.getId() );
+                ArrayAdapter<Setor> dataAdapter = new ArrayAdapter<Setor>(identificacao.this, android.R.layout.simple_list_item_1, setores);
+                spnSetor.setAdapter(dataAdapter);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
+        /*Botao*/
+        btSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                identificacao.this.Validar();
+            }
+
+        });
+
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_identificacao, menu);
-        return true;
-    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -122,35 +182,113 @@ public class identificacao extends ActionBarActivity {
     }
 
 
-    private List<String> ListUnidade(){
-        List<String> list = new ArrayList<String>();
+    private void Validar(){
+        ProgressDialog mDialog = new ProgressDialog(this);
+        mDialog.setMessage("Carregando...");
+        mDialog.setCancelable(false);
+        mDialog.show();
 
-        Cursor cursor = db.query("UNIDADE", null, null, null, null, null, null, null);
-Log.e("Unidade", String.valueOf(cursor.getCount()));
-        if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            do {
-                list.add( cursor.getString(cursor.getColumnIndex("NOME") ) );
-            }while( cursor.moveToNext() );
+        //Validacao
+        boolean valido = true;
+        View elemento = null;
+        String label = null;
+        boolean email = false;
+        if( TextUtils.isEmpty( edtNome.getText() ) ){
+            valido = false;
+            elemento = edtNome;
+            label = ((TextView) findViewById(R.id.tvNome)).getText().toString();
+        }
+        else if( TextUtils.isEmpty(edtEmail.getText())){
+            valido = false;
+            elemento = edtEmail;
+            label = ((TextView) findViewById(R.id.tvEmail)).getText().toString();
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(edtEmail.getText()).matches() ){
+            valido = false;
+            elemento = edtEmail;
+            label = ((TextView) findViewById(R.id.tvEmail)).getText().toString();
+            email = true;
+        }
+        else if( TextUtils.isEmpty( edtTelefone.getText() ) ){
+            valido = false;
+            elemento = edtTelefone;
+            label = ((TextView) findViewById(R.id.tvTelefone)).getText().toString();
+        }
+        else if( TextUtils.equals(spnTipoUsuario.getSelectedItem().toString(), "Outro") && TextUtils.isEmpty( edtOutro.getText() ) ){
+            valido = false;
+            elemento = edtOutro;
+            label = ((TextView) findViewById(R.id.tvOutro)).getText().toString();
+        }
+        else if( TextUtils.isEmpty( edtMatricula.getText() ) ){
+            valido = false;
+            elemento = edtMatricula;
+            label = ((TextView) findViewById(R.id.tvMatricula)).getText().toString();
         }
 
-        return list;
-    }
 
-    private List<String> ListSetor(){
-        List<String> list = new ArrayList<String>();
+        if(!valido){
 
-        Cursor cursor = db.query("SETOR", null, null, null, null, null, null, null);
-        Log.e("Setor", String.valueOf(cursor.getCount()));
-        if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            do {
-                list.add( cursor.getString(cursor.getColumnIndex("NOME") ) );
-            }while( cursor.moveToNext() );
+            mDialog.dismiss();
+            AlertDialog alerta = new AlertDialog.Builder(this).create();
+            alerta.setTitle("Campo Obrigatorio");
+            alerta.setMessage("O Campo " + label + (email ? " e invalido." : " precisa ser preenchido." ));
+            final View finalElemento = elemento;
+            alerta.setButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finalElemento.requestFocus();
+                }
+            });
+            alerta.show();
+
+        }else{
+            this.Salvar(mDialog);
         }
 
-        return list;
+
     }
 
+    private void Salvar(ProgressDialog mDialog){
+        Usuario usuario = new Usuario();
+        usuario.setNome(edtNome.getText().toString());
+        usuario.setEmail(edtEmail.getText().toString());
+        usuario.setTelefone(edtTelefone.getText().toString());
+        usuario.setIdentificacao(edtMatricula.getText().toString());
+        usuario.setTipo(UsuarioDAO.getTipoByString(spnTipoUsuario.getSelectedItem().toString()));
+        usuario.setOutroTipo(usuario.getTipo() == 3 ? edtOutro.getText().toString() : null);
+        usuario.setSetor((Setor) spnSetor.getSelectedItem());
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this.db);
+        usuarioDAO.saveUsuario(usuario);
+
+        mDialog.dismiss();
+
+        AlertDialog alerta = new AlertDialog.Builder(this).create();
+
+        if(usuario.get_id() > 0){
+            alerta.setCanceledOnTouchOutside(false);
+            alerta.setTitle("Sucesso");
+            alerta.setMessage("A sua identificaçãoo foi salva com sucesso. \nAgora você já pode enviar Ocorrências.");
+            alerta.setButton("Ir para o Inicio", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    identificacao.this.Concluir();
+                }
+            });
+        }else{
+            alerta.setTitle("Erro");
+            alerta.setMessage("Ocorreu um erro ao salvar seus dados.\nFavor Tente Novamente.");
+        }
+
+        alerta.show();
+
+    }
+
+
+    private void Concluir(){
+        Intent intent = new Intent();
+        setResult(RESULT_OK, intent);
+        finish();//finishing activity
+    }
 
 }

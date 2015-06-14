@@ -11,11 +11,11 @@ package com.example.robmah.sigosapp.modelos;
  * @author Robson
  */
 public class Unidade {
-    
+    private int _id;
     private String nome;
 
-    public Unidade(){
-        
+    public Unidade() {
+
     }
 
     public String getNome() {
@@ -25,6 +25,18 @@ public class Unidade {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
-    
+
+    public int getId() {
+        return _id;
+    }
+
+    public void setId(int id) {
+        this._id = id;
+    }
+
+    /*  */
+    public String toString(){
+        return this.nome;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.example.robmah.sigosapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -9,8 +10,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.robmah.sigosapp.controle.UsuarioDAO;
+import com.example.robmah.sigosapp.database.DataBase;
+
 
 public class sigosapp extends Activity {
+
+    private DataBase database;
+    private SQLiteDatabase db;
 
     Button botao;
 
@@ -18,9 +25,12 @@ public class sigosapp extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        boolean logado = false;
+        database = new DataBase(this);
+        db = database.getWritableDatabase();
 
-        if(logado){
+        UsuarioDAO usuarioDAO = new UsuarioDAO(db);
+
+        if(usuarioDAO.UsuarioRegistrado()){
             Intent intent = new Intent(this, ocorrencia.class);
             startActivity(intent);
             finish();
@@ -35,11 +45,26 @@ public class sigosapp extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(sigosapp.this, identificacao.class);
-                startActivity(intent);
+                startActivityForResult(intent, 3249);
 
             }
         });
 
+
+    }
+
+    //Esepra o Retorno da activity Identificação
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 3249){
+            if(resultCode == Activity.RESULT_OK) {
+                Intent intent = new Intent(this, ocorrencia.class);
+                startActivity(intent);
+                finish();
+            }
+        }
 
     }
 

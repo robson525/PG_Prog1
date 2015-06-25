@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Descrava a Ocorrência"
+        android:text="Descreva a Ocorrência"
         android:id="@+id/tvDescricao"
         android:layout_gravity="center_horizontal"
         android:textStyle="bold"

@@ -135,34 +135,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:id="@+id/llOutroTipo">
-
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Outro Tipo"
-                    android:id="@+id/tvOutro"
-                    android:layout_weight="3"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical" />
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/edtOutro"
-                    android:layout_weight="1"
-                    android:inputType="text"
-                    android:gravity="center_vertical"
-                    android:layout_gravity="center_vertical" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:id="@+id/llIdentificador" >
 
                 <TextView
@@ -170,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="Matricula"
-                    android:id="@+id/tvMatricula"
+                    android:id="@+id/tvIdentificacao"
                     android:layout_weight="3"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_vertical" />

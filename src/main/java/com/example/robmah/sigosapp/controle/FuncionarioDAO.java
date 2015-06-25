@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.robmah.sigosapp.modelos.Estudante;
 import com.example.robmah.sigosapp.modelos.Funcionario;
 
 /**
@@ -29,7 +28,7 @@ public class FuncionarioDAO {
             cursor.moveToFirst();
 
             funcionario.setId(cursor.getInt(cursor.getColumnIndex("_id")));
-            funcionario.setSiap(cursor.getString(cursor.getColumnIndex("SIAP")));
+            funcionario.setSiape(cursor.getString(cursor.getColumnIndex("SIAPE")));
         }
 
         usuarioDAO.getUsuario(funcionario);
@@ -42,7 +41,7 @@ public class FuncionarioDAO {
         usuarioDAO.saveUsuario(funcionario);
 
         ContentValues values = new ContentValues();
-        values.put("SIAP", funcionario.getSiap());
+        values.put("SIAPE", funcionario.getSiape());
         values.put("USUARIO", funcionario.getUsuarioId());
 
         long id = db.insert("FUNCIONARIO", null, values);

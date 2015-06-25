@@ -10,7 +10,7 @@ import com.example.robmah.sigosapp.controle.FuncionarioDAO;
 public class Funcionario extends Usuario {
 
     private int _id;
-    private String siap;
+    private String siape;
 
     public int getId(){
         return this._id;
@@ -20,20 +20,20 @@ public class Funcionario extends Usuario {
         this._id = id;
     }
 
-    public String getSiap(){
-        return this.siap;
+    public String getSiape(){
+        return this.siape;
     }
 
-    public void setSiap(String siap){
-        this.siap = siap;
+    public void setSiape(String siape){
+        this.siape = siape;
     }
 
     public void setIdentificacao(String ciap){
-        this.siap = ciap;
+        this.siape = ciap;
     }
 
    public String getIdentificacao(){
-        return this.siap;
+        return this.siape;
     }
 
 

@@ -43,7 +43,6 @@ public class identificacao extends ActionBarActivity {
     private EditText edtEmail;
     private EditText edtTelefone;
     private Spinner spnTipoUsuario;
-    private EditText edtOutro;
     private EditText edtMatricula;
     private Spinner spnUnidade;
     private Spinner spnSetor;
@@ -63,7 +62,6 @@ public class identificacao extends ActionBarActivity {
         edtEmail = (EditText)findViewById( R.id.edtEmail ) ;
         edtTelefone = (EditText)findViewById( R.id.edtTelefone ) ;
         spnTipoUsuario = (Spinner)findViewById( R.id.spnTipo ) ;
-        edtOutro = (EditText)findViewById( R.id.edtOutro ) ;
         edtMatricula  = (EditText)findViewById( R.id.edtIdentificador ) ;
         spnUnidade = (Spinner)findViewById( R.id.spnUnidade ) ;
         spnSetor = (Spinner)findViewById( R.id.spnSetor ) ;
@@ -99,16 +97,18 @@ public class identificacao extends ActionBarActivity {
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
         spnTipoUsuario.setAdapter(dataAdapter);
 
-        /* Outro tipo de usuairo*/
-        final LinearLayout llOutroTipo = (LinearLayout)findViewById(R.id.llOutroTipo);
-        llOutroTipo.setVisibility(View.GONE);
+        /* Outro tipo de usuario*/
+        final TextView identificacao = (TextView)findViewById(R.id.tvIdentificacao);
         spnTipoUsuario.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 2){
-                    llOutroTipo.setVisibility(View.VISIBLE);
-                }else{
-                    llOutroTipo.setVisibility(View.GONE);
+                if(position == 0){
+                    identificacao.setText("Matricula");
+                }else if (position == 1){
+                    identificacao.setText("SIAPE");
+                }
+                else{
+                    identificacao.setText("CPF");
                 }
             }
 
@@ -210,15 +210,10 @@ public class identificacao extends ActionBarActivity {
             elemento = edtTelefone;
             label = ((TextView) findViewById(R.id.tvTelefone)).getText().toString();
         }
-        else if( TextUtils.equals(spnTipoUsuario.getSelectedItem().toString(), "Outro") && TextUtils.isEmpty( edtOutro.getText() ) ){
-            valido = false;
-            elemento = edtOutro;
-            label = ((TextView) findViewById(R.id.tvOutro)).getText().toString();
-        }
         else if( TextUtils.isEmpty( edtMatricula.getText() ) ){
             valido = false;
             elemento = edtMatricula;
-            label = ((TextView) findViewById(R.id.tvMatricula)).getText().toString();
+            label = ((TextView) findViewById(R.id.tvIdentificacao)).getText().toString();
         }
 
 

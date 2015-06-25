@@ -6,7 +6,7 @@ package com.example.robmah.sigosapp.modelos;
 public class Funcionario extends Usuario {
 
     private int _id;
-    private String ciap;
+    private String siap;
 
     public int getId(){
         return this._id;
@@ -16,19 +16,19 @@ public class Funcionario extends Usuario {
         this._id = id;
     }
 
-    public String getCiap(){
-        return this.ciap;
+    public String getSiap(){
+        return this.siap;
     }
 
-    public void setCiap (String ciap){
-        this.ciap = ciap;
+    public void setSiap(String siap){
+        this.siap = siap;
     }
 
     public void setIdentificacao(String ciap){
-        this.ciap = ciap;
+        this.siap = ciap;
     }
     public String getIdentificacao(){
-        return this.ciap;
+        return this.siap;
     }
 
 

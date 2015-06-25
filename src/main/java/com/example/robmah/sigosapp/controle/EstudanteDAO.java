@@ -28,7 +28,9 @@ public class EstudanteDAO {
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
 
+            estudante.setId(cursor.getInt(cursor.getColumnIndex("_id")));
             estudante.setMatricula(cursor.getString(cursor.getColumnIndex("MATRICULA")));
+
         }
 
         usuarioDAO.getUsuario(estudante);

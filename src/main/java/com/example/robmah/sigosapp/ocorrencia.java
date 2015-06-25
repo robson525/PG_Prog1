@@ -32,6 +32,7 @@ import com.example.robmah.sigosapp.modelos.TipoOcorrencia;
 import com.example.robmah.sigosapp.modelos.Unidade;
 import com.example.robmah.sigosapp.modelos.Usuario;
 
+import java.io.Console;
 import java.util.ArrayList;
 
 
@@ -88,6 +89,8 @@ public class ocorrencia extends ActionBarActivity {
         ArrayAdapter<Unidade> unidadeAdapter = new ArrayAdapter<Unidade>(this, android.R.layout.simple_list_item_1, unidades);
         spnUnidade.setAdapter(unidadeAdapter);
 
+        this.CarregaUnidadeUsuaio();
+
         //Quando Selecionar um Item da Unidade
         spnUnidade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -120,14 +123,17 @@ public class ocorrencia extends ActionBarActivity {
 
     }
 
-
-    private void CarregaSetorDoUsuario(){
+    private void CarregaUnidadeUsuaio(){
 
         for(int i=0; i < spnUnidade.getAdapter().getCount(); i++){
             if( ((Unidade) spnUnidade.getItemAtPosition(i)).getId() == usuario.getSetor().getUnidade().getId() ){
                 spnUnidade.setSelection( i );
             }
         }
+
+    }
+
+    private void CarregaSetorDoUsuario(){
 
         for(int i=0; i < spnSetor.getAdapter().getCount(); i++){
             if( ((Setor)spnSetor.getItemAtPosition(i)).getId() == usuario.getSetor().getId()  ){

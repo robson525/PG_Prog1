@@ -30,5 +30,7 @@ public class Funcionario extends Usuario {
     public String getIdentificacao(){
         return this.ciap;
     }
+
+
 }
 

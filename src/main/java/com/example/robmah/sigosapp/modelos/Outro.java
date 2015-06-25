@@ -5,7 +5,16 @@ package com.example.robmah.sigosapp.modelos;
  */
 public class Outro extends Usuario {
 
+    private int _id;
     private String cpf;
+
+    public int getId(){
+        return this._id;
+    }
+
+    public void setId(int id){
+        this._id = id;
+    }
 
     public String getCpf (){
         return this.cpf;
@@ -23,4 +32,6 @@ public class Outro extends Usuario {
     public String getIdentificacao(){
         return this.cpf;
     }
+
+
 }

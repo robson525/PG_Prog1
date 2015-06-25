@@ -20,25 +20,22 @@ public class UsuarioDAO {
     }
 
 
-    public Usuario getUsuario(){
+    public void getUsuario(Usuario usuario){
 
-        Usuario usuario = new Usuario();
+
         SetorDAO setorDAO = new SetorDAO(db);
         Cursor cursor = db.query("USUARIO", null, null, null, null, null, null, null);
 
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
 
-            usuario.setId(cursor.getInt(cursor.getColumnIndex("_id")));
+            usuario.setUsuarioId(cursor.getInt(cursor.getColumnIndex("_id")));
             usuario.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
             usuario.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
             usuario.setTelefone(cursor.getString(cursor.getColumnIndex("TELEFONE")));
-            usuario.setIdentificacao(cursor.getString(cursor.getColumnIndex("IDENTIFICACAO")));
             usuario.setSetor( setorDAO.getSetorbyId( cursor.getInt(cursor.getColumnIndex("SETOR") ) ));
 
         }
-
-        return usuario;
 
     }
 
@@ -60,7 +57,7 @@ public class UsuarioDAO {
         values.put("SETOR", usuario.getSetor().getId() );
 
         long id = db.insert("USUARIO", null, values);
-        usuario.setId((int) id);
+        usuario.setUsuarioId((int) id);
 
     }
 

@@ -20,11 +20,11 @@ public abstract class Usuario {
         
     }
 
-    public int getId() {
+    public int getUsuarioId() {
         return _id;
     }
 
-    public void setId(int _id) {
+    public void setUsuarioId(int _id) {
         this._id = _id;
     }
 

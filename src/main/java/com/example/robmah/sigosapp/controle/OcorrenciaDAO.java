@@ -38,7 +38,7 @@ public class OcorrenciaDAO {
         values.put("TIPO_OCORRENCIA", ocorrencia.getTipo().getId() );
         values.put("PAPEL", ocorrencia.getPapel());
         values.put("SETOR", ocorrencia.getSetor().getId());
-        values.put("USUARIO", ocorrencia.getUsuario().getId());
+        values.put("USUARIO", ocorrencia.getUsuario().getUsuarioId());
 
         long id = db.insert("OCORRENCIA", null, values);
         ocorrencia.setId( (int)id );

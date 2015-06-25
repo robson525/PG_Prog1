@@ -20,6 +20,41 @@ public class UsuarioDAO {
     }
 
 
+    public Usuario getUsuario(){
+
+        Usuario usuario = null;
+
+        Cursor cursor;
+        cursor = db.query("ESTUDANTE", null, null, null, null, null, null, null);
+        if(cursor.getCount() > 0){
+
+            EstudanteDAO estudanteDAO = new EstudanteDAO(db);
+            usuario = estudanteDAO.getEstudante();
+
+        }else{
+
+            cursor = db.query("FUNCIONARIO", null, null, null, null, null, null, null);
+            if(cursor.getCount() > 0){
+
+                FuncionarioDAO funcionarioDAO = new FuncionarioDAO(db);
+                usuario = funcionarioDAO.getFuncionario();
+
+            }else{
+
+                cursor = db.query("OUTRO", null, null, null, null, null, null, null);
+                if(cursor.getCount() > 0){
+
+                    OutroDAO outroDAO = new OutroDAO(db);
+                    usuario = outroDAO.getOutro();
+
+                }
+
+            }
+        }
+
+        return usuario;
+    }
+
     public void getUsuario(Usuario usuario){
 
 

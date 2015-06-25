@@ -8,15 +8,12 @@ package com.example.robmah.sigosapp.modelos;
  *
  * @author Marina
  */
-public class Usuario {  
+public abstract class Usuario {
 
     private int _id;
     private String nome;
     private String email;
     private String telefone;
-    private int tipo;
-    private String outroTipo;
-    private String identificacao;
     private Setor setor;
     
     public Usuario (){
@@ -55,30 +52,6 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    public int getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(int tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getOutroTipo() {
-        return outroTipo;
-    }
-
-    public void setOutroTipo(String outroTipo) {
-        this.outroTipo = outroTipo;
-    }
-
-    public String getIdentificacao() {
-        return identificacao;
-    }
-
-    public void setIdentificacao(String identificacao) {
-        this.identificacao = identificacao;
-    }
-
     public Setor getSetor() {
         return setor;
     }
@@ -86,4 +59,7 @@ public class Usuario {
     public void setSetor(Setor setor) {
         this.setor = setor;
     }
+
+    public abstract void setIdentificacao(String identificacao);
+
 }

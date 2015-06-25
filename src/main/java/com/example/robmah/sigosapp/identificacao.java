@@ -25,13 +25,9 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.robmah.sigosapp.controle.SetorDAO;
-import com.example.robmah.sigosapp.controle.UnidadeDAO;
-import com.example.robmah.sigosapp.controle.UsuarioDAO;
+import com.example.robmah.sigosapp.controle.*;
 import com.example.robmah.sigosapp.database.DataBase;
-import com.example.robmah.sigosapp.modelos.Setor;
-import com.example.robmah.sigosapp.modelos.Unidade;
-import com.example.robmah.sigosapp.modelos.Usuario;
+import com.example.robmah.sigosapp.modelos.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -97,7 +93,7 @@ public class identificacao extends ActionBarActivity {
 
         /* Tipos de usuario */
         List<String> list = new ArrayList<String>();
-        list.add("Aluno");
+        list.add("Estudante");
         list.add("Funcionario");
         list.add("Outro");
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list);
@@ -249,13 +245,26 @@ public class identificacao extends ActionBarActivity {
     }
 
     private void Salvar(ProgressDialog mDialog){
-        Usuario usuario = new Usuario();
+
+        Usuario usuario;
+
+        if (spnTipoUsuario.getSelectedItem().toString() == "Estudante"){
+            usuario = new Estudante();
+        }
+        else if(spnTipoUsuario.getSelectedItem().toString() == "Funcionario"){
+            usuario = new Funcionario();
+        }
+        else {
+            usuario = new Outro();
+        }
+
+        //Usuario usuario = new Usuario();
         usuario.setNome(edtNome.getText().toString());
         usuario.setEmail(edtEmail.getText().toString());
         usuario.setTelefone(edtTelefone.getText().toString());
+
         usuario.setIdentificacao(edtMatricula.getText().toString());
-        usuario.setTipo(UsuarioDAO.getTipoByString(spnTipoUsuario.getSelectedItem().toString()));
-        usuario.setOutroTipo(usuario.getTipo() == 3 ? edtOutro.getText().toString() : null);
+
         usuario.setSetor((Setor) spnSetor.getSelectedItem());
 
         UsuarioDAO usuarioDAO = new UsuarioDAO(this.db);

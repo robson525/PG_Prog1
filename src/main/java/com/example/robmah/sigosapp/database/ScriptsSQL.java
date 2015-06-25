@@ -36,10 +36,6 @@ public class ScriptsSQL {
         sqlBuilder.append("NOME VARCHAR (200) NOT NULL, ");
         sqlBuilder.append("TELEFONE VARCHAR (14) NOT NULL, ");
         sqlBuilder.append("EMAIL VARCHAR (100) NOT NULL, ");
-        sqlBuilder.append("IDENTIFICACAO VARCHAR (30) NOT NULL, ");
-        sqlBuilder.append("TIPO INTEGER NOT NULL, ");
-        sqlBuilder.append("OUTRO_TIPO VARCHAR (100), ");
-        sqlBuilder.append("MUNICIPIO VARCHAR (100), ");
         sqlBuilder.append("SETOR INTEGER REFERENCES SETOR (_id) ON DELETE SET NULL ON UPDATE CASCADE ");
         sqlBuilder.append(");");
 

@@ -33,8 +33,6 @@ public class UsuarioDAO {
             usuario.setNome(cursor.getString(cursor.getColumnIndex("NOME")));
             usuario.setEmail(cursor.getString(cursor.getColumnIndex("EMAIL")));
             usuario.setTelefone(cursor.getString(cursor.getColumnIndex("TELEFONE")));
-            usuario.setTipo(cursor.getInt(cursor.getColumnIndex("TIPO")));
-            usuario.setOutroTipo(cursor.getString(cursor.getColumnIndex("OUTRO_TIPO")));
             usuario.setIdentificacao(cursor.getString(cursor.getColumnIndex("IDENTIFICACAO")));
             usuario.setSetor( setorDAO.getSetorbyId( cursor.getInt(cursor.getColumnIndex("SETOR") ) ));
 
@@ -59,11 +57,6 @@ public class UsuarioDAO {
         values.put("NOME", usuario.getNome());
         values.put("TELEFONE", usuario.getTelefone());
         values.put("EMAIL", usuario.getEmail());
-        values.put("IDENTIFICACAO", usuario.getIdentificacao());
-        values.put("TIPO", usuario.getTipo());
-        if(usuario.getTipo() == 3){
-            values.put("OUTRO_TIPO", usuario.getOutroTipo());
-        }
         values.put("SETOR", usuario.getSetor().getId() );
 
         long id = db.insert("USUARIO", null, values);
@@ -73,7 +66,7 @@ public class UsuarioDAO {
 
 
     public static int getTipoByString(String tipo){
-        if(TextUtils.equals(tipo, "Aluno")){
+        if(TextUtils.equals(tipo, "Estudante")){
             return 1;
         }else if(TextUtils.equals(tipo, "Funcionario")){
             return 2;

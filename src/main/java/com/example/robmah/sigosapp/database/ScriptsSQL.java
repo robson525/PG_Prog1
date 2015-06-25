@@ -42,6 +42,40 @@ public class ScriptsSQL {
         return sqlBuilder.toString();
     }
 
+    public static String getCreateEstudante(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS ESTUDANTE ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("MATRICULA VARCHAR (20) NOT NULL, ");
+        sqlBuilder.append("USUARIO INTEGER REFERENCES USUARIO (_id) ON DELETE CASCADE ON UPDATE CASCADE ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+    }
+
+    public static String getCreateFuncionario(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS FUNCIONARIO ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("SIAPE VARCHAR (20) NOT NULL, ");
+        sqlBuilder.append("USUARIO INTEGER REFERENCES USUARIO (_id) ON DELETE CASCADE ON UPDATE CASCADE ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+    }
+
+    public static String getCreateOutro(){
+        StringBuilder sqlBuilder = new StringBuilder();
+        sqlBuilder.append("CREATE TABLE IF NOT EXISTS OUTRO ( ");
+        sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
+        sqlBuilder.append("CPF VARCHAR (11) NOT NULL, ");
+        sqlBuilder.append("USUARIO INTEGER REFERENCES USUARIO (_id) ON DELETE CASCADE ON UPDATE CASCADE ");
+        sqlBuilder.append(");");
+
+        return sqlBuilder.toString();
+    }
+
+
     public static String getCreateTipoOcorrencia(){
         StringBuilder sqlBuilder = new StringBuilder();
         sqlBuilder.append("CREATE TABLE IF NOT EXISTS OCORRENCIA_TIPO ( ");

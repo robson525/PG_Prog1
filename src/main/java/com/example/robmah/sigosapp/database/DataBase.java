@@ -19,6 +19,9 @@ public class DataBase extends SQLiteOpenHelper {
         db.execSQL(ScriptsSQL.getCreateUnidade());
         db.execSQL(ScriptsSQL.getCreateSetor());
         db.execSQL(ScriptsSQL.getCreateUsuario());
+        db.execSQL(ScriptsSQL.getCreateEstudante());
+        db.execSQL(ScriptsSQL.getCreateFuncionario());
+        db.execSQL(ScriptsSQL.getCreateOutro());
         db.execSQL(ScriptsSQL.getCreateTipoOcorrencia());
         db.execSQL(ScriptsSQL.getCreateOcorrencia());
         db.execSQL(ScriptsSQL.getCreateEnvio());

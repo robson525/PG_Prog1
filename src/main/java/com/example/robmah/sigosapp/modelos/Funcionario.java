@@ -1,5 +1,9 @@
 package com.example.robmah.sigosapp.modelos;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.robmah.sigosapp.controle.FuncionarioDAO;
+
 /**
  * Created by Robson on 24/06/2015.
  */
@@ -27,10 +31,17 @@ public class Funcionario extends Usuario {
     public void setIdentificacao(String ciap){
         this.siap = ciap;
     }
-    public String getIdentificacao(){
+
+   public String getIdentificacao(){
         return this.siap;
     }
 
 
+    @Override
+    public void Salvar(SQLiteDatabase db) {
+        FuncionarioDAO funcionarioDAO = new FuncionarioDAO(db);
+        funcionarioDAO.saveFuncionario(this);
+
+    }
 }
 

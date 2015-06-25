@@ -267,8 +267,7 @@ public class identificacao extends ActionBarActivity {
 
         usuario.setSetor((Setor) spnSetor.getSelectedItem());
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO(this.db);
-        usuarioDAO.saveUsuario(usuario);
+        usuario.Salvar(db);
 
         mDialog.dismiss();
 

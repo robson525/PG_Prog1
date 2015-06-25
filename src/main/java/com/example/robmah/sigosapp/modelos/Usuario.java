@@ -4,6 +4,8 @@
  */
 package com.example.robmah.sigosapp.modelos;
 
+import android.database.sqlite.SQLiteDatabase;
+
 /**
  *
  * @author Marina
@@ -61,5 +63,7 @@ public abstract class Usuario {
     }
 
     public abstract void setIdentificacao(String identificacao);
+
+    public abstract void Salvar(SQLiteDatabase db);
 
 }

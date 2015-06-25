@@ -1,5 +1,9 @@
 package com.example.robmah.sigosapp.modelos;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.robmah.sigosapp.controle.EstudanteDAO;
+
 /**
  * Created by Robson on 24/06/2015.
  */
@@ -27,7 +31,16 @@ public class Estudante extends Usuario{
     public void setIdentificacao(String matricula){
         this.matricula = matricula;
     }
+
     public String getIdentificacao(){
         return this.matricula;
     }
+
+    @Override
+    public void Salvar(SQLiteDatabase db) {
+        EstudanteDAO estudanteDAO = new EstudanteDAO(db);
+        estudanteDAO.saveEstudante(this);
+    }
+
+
 }

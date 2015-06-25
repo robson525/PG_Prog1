@@ -1,5 +1,9 @@
 package com.example.robmah.sigosapp.modelos;
 
+import android.database.sqlite.SQLiteDatabase;
+
+import com.example.robmah.sigosapp.controle.OutroDAO;
+
 /**
  * Created by Robson on 24/06/2015.
  */
@@ -33,5 +37,9 @@ public class Outro extends Usuario {
         return this.cpf;
     }
 
+    public void Salvar(SQLiteDatabase db) {
+        OutroDAO outroDAO = new OutroDAO(db);
+        outroDAO.saveOutro(this);
 
+    }
 }

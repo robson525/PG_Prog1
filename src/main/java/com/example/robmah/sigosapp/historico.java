@@ -1,15 +1,19 @@
 package com.example.robmah.sigosapp;
 
+import android.app.AlertDialog;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.robmah.sigosapp.adapter.HistoricoAdapter;
 import com.example.robmah.sigosapp.controle.OcorrenciaDAO;
 import com.example.robmah.sigosapp.controle.UsuarioDAO;
 import com.example.robmah.sigosapp.database.DataBase;
@@ -54,8 +58,31 @@ public class historico extends ActionBarActivity {
 
         OcorrenciaDAO ocorrenciaDAO = new OcorrenciaDAO(db);
         ArrayList<Ocorrencia> ocorrencias =  ocorrenciaDAO.getListOcorrencias();
-        ArrayAdapter<Ocorrencia> ocorrenciaAdapter =  new ArrayAdapter<Ocorrencia>(this, android.R.layout.simple_list_item_1, ocorrencias);
-        listOcorrencias.setAdapter(ocorrenciaAdapter);
+        //ArrayAdapter<Ocorrencia> ocorrenciaAdapter =  new ArrayAdapter<Ocorrencia>(this, android.R.layout.simple_list_item_1, ocorrencias);
+        listOcorrencias.setAdapter(new HistoricoAdapter(this, ocorrencias));
+
+        listOcorrencias.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Ocorrencia ocorrencia = (Ocorrencia)parent.getItemAtPosition(position);
+
+                AlertDialog alerta = new AlertDialog.Builder(historico.this).create();
+                alerta.setTitle("Informações");
+                String infomacoes = "";
+                infomacoes += "Tipo: " + ocorrencia.getTipo().getNome() + "\n";
+                infomacoes += "Descrição: " + ocorrencia.getDescricao() + "\n\n";
+                infomacoes += "Papel: " + ocorrencia.getPapelDesc() + "\n";
+                infomacoes += "Unidade: " + ocorrencia.getSetor().getUnidade().getNome() + "\n";
+                infomacoes += "Setor: " + ocorrencia.getSetor().getNome() + "\n";
+                infomacoes += "Data: " + ocorrencia.getEnvio().getDataFormatada() + " " + ocorrencia.getEnvio().getHoraFormatada() + "\n";
+
+                alerta.setMessage(infomacoes);
+
+                alerta.show();
+
+                return false;
+            }
+        });
 
     }
 

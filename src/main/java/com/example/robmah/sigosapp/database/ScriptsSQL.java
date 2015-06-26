@@ -106,7 +106,7 @@ public class ScriptsSQL {
         StringBuilder sqlBuilder = new StringBuilder();
         sqlBuilder.append("CREATE TABLE IF NOT EXISTS ENVIO ( ");
         sqlBuilder.append("_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, ");
-        sqlBuilder.append("DATA DATETIME , ");
+        sqlBuilder.append("DATA DATETIME DEFAULT CURRENT_TIMESTAMP , ");
         sqlBuilder.append("STATUS INTEGER NOT NULL, ");
         sqlBuilder.append("OCORRENCIA INTEGER REFERENCES OCORRENCIA (_id) ON DELETE CASCADE ON UPDATE CASCADE NOT NULL ");
         sqlBuilder.append(");");

@@ -17,6 +17,7 @@ public class Ocorrencia {
     private Setor setor;
     private TipoOcorrencia tipo;
     private Usuario usuario;
+    private Envio envio;
     
     public Ocorrencia(){
         
@@ -78,9 +79,28 @@ public class Ocorrencia {
         this.usuario = usuario;
     }
 
+    public Envio getEnvio() {
+        return envio;
+    }
+
+    public void setEnvio(Envio envio) {
+        this.envio = envio;
+    }
 
     public String toString(){
         return this.tipo.getNome();
+    }
+
+    public String getPapelDesc(){
+
+        if(this.papel == 1){
+            return "Vítima";
+        }else if(this.papel == 2){
+            return "Testemunha";
+        }else{
+            return "Outro";
+        }
+
     }
 
 }

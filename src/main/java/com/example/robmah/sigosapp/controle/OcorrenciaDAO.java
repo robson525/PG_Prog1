@@ -50,6 +50,7 @@ public class OcorrenciaDAO {
         TipoOcorrenciaDAO tipoOcorrenciaDAO = new TipoOcorrenciaDAO(db);
         SetorDAO setorDAO = new SetorDAO(db);
         UsuarioDAO usuarioDAO = new UsuarioDAO(db);
+        EnvioDAO envioDAO = new EnvioDAO(db);
         ArrayList<Ocorrencia> list = new ArrayList<Ocorrencia>();
         Cursor cursor = db.query("OCORRENCIA", null, null, null, null, null, null, null);
 
@@ -65,6 +66,7 @@ public class OcorrenciaDAO {
                 ocorrencia.setTipo(  tipoOcorrenciaDAO.getTipoOcorrenciaByID( cursor.getInt(cursor.getColumnIndex("TIPO_OCORRENCIA") ) ));
                 ocorrencia.setSetor( setorDAO.getSetorbyId( cursor.getInt( cursor.getColumnIndex("SETOR") ) ) );
                 ocorrencia.setUsuario( usuarioDAO.getUsuario() );
+                ocorrencia.setEnvio(  envioDAO.getEnvioByOcorrencia(ocorrencia) );
 
                 list.add( ocorrencia );
 

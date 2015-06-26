@@ -4,6 +4,8 @@
  */
 package com.example.robmah.sigosapp.modelos;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -57,5 +59,22 @@ public class Envio {
     public void setOcorrencia(Ocorrencia ocorrencia){
         this.ocorrencia = ocorrencia;
     }
+
+    public String getDataFormatada(){
+
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+
+        return dateFormat.format(this.data);
+
+   }
+
+    public String getHoraFormatada(){
+
+        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+
+        return dateFormat.format(this.data);
+
+    }
+
 }
 

@@ -22,6 +22,13 @@ public abstract class Usuario {
         
     }
 
+    public abstract String getIdentificacao();
+
+    public abstract void setIdentificacao(String identificacao);
+
+    public abstract void Salvar(SQLiteDatabase db);
+
+
     public int getUsuarioId() {
         return _id;
     }
@@ -62,8 +69,6 @@ public abstract class Usuario {
         this.setor = setor;
     }
 
-    public abstract void setIdentificacao(String identificacao);
 
-    public abstract void Salvar(SQLiteDatabase db);
 
 }

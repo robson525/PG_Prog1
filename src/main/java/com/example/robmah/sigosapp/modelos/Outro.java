@@ -33,10 +33,12 @@ public class Outro extends Usuario {
         this.cpf = cpf;
     }
 
+    @Override
     public String getIdentificacao(){
         return this.cpf;
     }
 
+    @Override
     public void Salvar(SQLiteDatabase db) {
         OutroDAO outroDAO = new OutroDAO(db);
         outroDAO.saveOutro(this);

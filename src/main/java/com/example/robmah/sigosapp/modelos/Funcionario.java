@@ -28,14 +28,15 @@ public class Funcionario extends Usuario {
         this.siape = siape;
     }
 
+    @Override
     public void setIdentificacao(String ciap){
         this.siape = ciap;
     }
 
-   public String getIdentificacao(){
+    @Override
+    public String getIdentificacao(){
         return this.siape;
     }
-
 
     @Override
     public void Salvar(SQLiteDatabase db) {

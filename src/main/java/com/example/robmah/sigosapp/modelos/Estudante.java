@@ -28,10 +28,12 @@ public class Estudante extends Usuario{
         this.matricula = matricula;
     }
 
+    @Override
     public void setIdentificacao(String matricula){
         this.matricula = matricula;
     }
 
+    @Override
     public String getIdentificacao(){
         return this.matricula;
     }
